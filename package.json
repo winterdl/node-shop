@@ -8,17 +8,9 @@
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/collectedview/NODEJS-COMPLETE-GUIDE.git"
-  },
-  "author": "Joe Alongi",
+  "author": "Maximilian Schwarzmüller",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/collectedview/NODEJS-COMPLETE-GUIDE/issues"
-  },
-  "homepage": "https://github.com/collectedview/NODEJS-COMPLETE-GUIDE#readme",
   "devDependencies": {
-    "nodemon": "^2.0.9"
+    "nodemon": "^1.18.3"
   }
 }
