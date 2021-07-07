@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/collectedview/NODEJS-COMPLETE-GUIDE/issues"
   },
-  "homepage": "https://github.com/collectedview/NODEJS-COMPLETE-GUIDE#readme"
+  "homepage": "https://github.com/collectedview/NODEJS-COMPLETE-GUIDE#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
 }
