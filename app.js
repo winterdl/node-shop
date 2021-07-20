@@ -44,10 +44,9 @@ mongoose
           email: "joe@test.com",
           cart: { items: [] },
         });
+        user.save();
       }
     });
-
-    user.save();
     app.listen(3000);
   })
   .catch((err) => {
