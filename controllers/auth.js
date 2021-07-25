@@ -140,7 +140,7 @@ exports.postReset = (req, res, next) => {
   crypto.randomBytes(32, (err, buffer) => {
     if (err) {
       console.log(err);
-      return red.redirect("/reset");
+      return res.redirect("/reset");
     }
     const token = buffer.toString("hex");
     User.findOne({ email: req.body.email })
@@ -155,15 +155,40 @@ exports.postReset = (req, res, next) => {
       })
       .then((result) => {
         res.redirect("/");
-        return transporter.sendMail({
+        transporter.sendMail({
           to: req.body.email,
           from: "shop@node-complete.com",
           subject: "Password reset",
-          html: `<p>You requested a password reset</p><p>Click this <a href="http://localhost:3000/reset/${token}" >link</a> to set a new password</p>`,
+          html: `
+            <p>You requested a password reset</p>
+            <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
+          `,
         });
       })
       .catch((err) => {
         console.log(err);
       });
   });
+};
+
+exports.getNewPassword = (req, res, next) => {
+  const token = req.params.token;
+  User.findOne({ resetToken: token, resetTokenExpiration: { $gt: Date.now() } })
+    .then((user) => {
+      let message = req.flash("error");
+      if (message.length > 0) {
+        message = message[0];
+      } else {
+        message = null;
+      }
+      res.render("auth/new-password", {
+        path: "/new-password",
+        pageTitle: "New Password",
+        errorMessage: message,
+        userId: user._id.toString(),
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
