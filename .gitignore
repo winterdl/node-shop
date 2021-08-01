@@ -45,4 +45,5 @@ yarn.lock
 package-lock.json
 .eslintcache
 prepros.config
-
+server.cert
+server.key
